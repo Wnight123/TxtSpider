@@ -148,16 +148,8 @@ class ProxyPool:
             except requests.exceptions.RequestException as e:
                 print(e)
                 ip_port = proxies['http'].split('/')[2]
-                self.ip_port_set.remove(ip_port)
+                if ip_port in self.ip_port_set:
+                    self.ip_port_set.remove(ip_port)
                 print("cur set size", len(self.ip_port_set))
-
-
-
-
-
-# proxytool = ProxyTool(10)
-# proxy = proxytool.getProxy()
-# for i in range(0,11):
-#     print(proxy())
 
 

@@ -23,8 +23,8 @@ def execSqlFile(conn, sqlPath):
         for sql in sqlList:
             cursor.execute(sql)
             conn.commit()
-    except:
-        print("execute sql failed")
+    except Exception as e:
+        print("execute sql failed\n", e)
         conn.rollback()
     finally:
         cursor.close()

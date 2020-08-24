@@ -1,26 +1,15 @@
---DROP TABLE IF EXISTS `CHARBASE`;
-CREATE TABLE IF NOT EXISTS `CHARBASE` (
-  `CHARID` int(10) unsigned NOT NULL,
-  `USERID` int(10) unsigned NOT NULL DEFAULT '0',
-  `ACCNAME` varchar(48) NOT NULL DEFAULT '',
-  `ZONE` varchar(16) NOT NULL DEFAULT '',
-  `NAME` varchar(64) NOT NULL DEFAULT '',
-  `SEX` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `AVAILABLE` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  `LASTACTIVEDATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `ACCPRIV` int(10) unsigned NOT NULL DEFAULT '0',
-  `CREATETIME` int(10) unsigned NOT NULL DEFAULT '0',
-  `VIP` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `CREATEIP` int(10) unsigned NOT NULL DEFAULT '0',
-  `ONLINEFLAG` smallint(5) unsigned NOT NULL default '0',
-  `CHANNELID` int(10) unsigned NOT NULL default '0',
-  `ACCPAYMONEY` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `ALLBINARY` longblob,
-  PRIMARY KEY (`CHARID`,`ZONE`),
-  UNIQUE KEY `NAME` (`NAME`),
-  UNIQUE KEY `CHARID` (`CHARID`,`ZONE`),
-  KEY `ACCNAME` (`ACCNAME`,`ZONE`),
-  KEY `CHARNAME` (`NAME`),
-  KEY `ONLINEFLAG` (`ONLINEFLAG`) USING BTREE,
-  KEY `CHANNELID` (`CHANNELID`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='charbase表'
+DROP TABLE IF EXISTS qubook;
+CREATE TABLE IF NOT EXISTS qubook (
+  name varchar(64) not null,
+  writer varchar(64) not null,
+  type varchar(32) not null,
+  size int(10) not null,
+  intime date not null,
+  dl varchar(256) default '',
+
+  PRIMARY KEY (name,writer),
+  KEY name (name) USING BTREE,
+  KEY writer (writer) USING BTREE,
+  KEY type (type) USING BTREE,
+  KEY size (size) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin
